@@ -1,0 +1,42 @@
+# Clase base que define una Persona
+class Persona:
+    def __init__(self, nombre, edad):
+        self._nombre = nombre  # Atributo protegido (encapsulación)
+        self._edad = edad      # Atributo protegido (encapsulación)
+
+    # Método para obtener información de la persona
+    def mostrar_informacion(self):
+        return f"Nombre: {self._nombre}, Edad: {self._edad}"
+
+# Clase derivada que extiende Persona, representando un Estudiante
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, grado):
+        super().__init__(nombre, edad)  # Llamada al constructor de la clase base
+        self.grado = grado
+
+    # Método sobrescrito para mostrar información específica de un Estudiante (polimorfismo)
+    def mostrar_informacion(self):
+        return f"Nombre: {self._nombre}, Edad: {self._edad}, Grado: {self.grado}"
+
+# Clase para demostrar encapsulación
+class Curso:
+    def __init__(self, nombre_curso):
+        self.__nombre_curso = nombre_curso  # Atributo privado (encapsulación)
+
+    def obtener_curso(self):
+        return self.__nombre_curso  # Acceso controlado mediante un método público
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    # Creación de objetos
+    persona = Persona("Carlos", 40)
+    estudiante = Estudiante("Ana", 20, "Segundo Año")
+    curso = Curso("Matemáticas Avanzadas")
+
+    # Uso de los métodos de las clases
+    print("--- Ejemplo de Herencia y Polimorfismo ---")
+    print(persona.mostrar_informacion())  # Método de la clase base
+    print(estudiante.mostrar_informacion())  # Método sobrescrito en la clase derivada
+
+    print("\n--- Ejemplo de Encapsulación ---")
+    print(f"Curso inscrito: {curso.obtener_curso()}")
